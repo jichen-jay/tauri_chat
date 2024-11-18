@@ -10,6 +10,7 @@
 <div class="dark:grainy flex w-full flex-col">
 	<div class="flex-1 px-3 py-2">
 		<div class="-mt-2 space-y-1.5">
+			
 			{#each routes as route (route.href)}
 				<a
 					data-sveltekit-preload-data

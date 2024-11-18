@@ -5,15 +5,15 @@
 	import { Eye, EyeOff } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 
-	import ThemeToggle from '../../lib/components/ui/theme-toggle.svelte';
-
 	let openaiShow = $state(false);
 
 	let openAiKey = $state('');
+	let geminiApiKey = $state('');
 
 	onMount(() => {
 		if (localStorage.getItem('openai')) {
 			openAiKey = localStorage.getItem('openai') as string;
+			geminiApiKey = localStorage.getItem('gemini') as string;
 		}
 
 	});
@@ -42,30 +42,21 @@
 				{/if}
 			</Button>
 		</div>
+		<Label class="text-right">Gemini</Label>
+		<div class="flex items-center justify-between gap-4">
+			<Input
+				bind:value={geminiApiKey}
+				class="col-span-3"
+			/>
+		</div>
 	</div>
 	<Button
 		type="submit"
 		class="w-fit"
 		on:click={() => {
 			localStorage.setItem('openai', openAiKey);
+			localStorage.setItem('gemini', geminiApiKey);
 		}}>Save</Button>
 
-<ThemeToggle/>
 </div>
 
-<style>
-	:root{
-		--bg-color: #FFFFFF;
-		--text-color: #000000;
-	}
-	
-	:global(body) {
-		background: var(--bg-color);
-		color: var(--text-color);
-	}
-	
-	:global(body.dark) {
-		--bg-color: #000000;
-		--text-color: #FFFFFF;
-	}
-</style>
