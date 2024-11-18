@@ -2,8 +2,10 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
-	import { onMount } from 'svelte';
 	import { Eye, EyeOff } from 'lucide-svelte';
+	import { onMount } from 'svelte';
+
+	import ThemeToggle from '../../lib/components/ui/theme-toggle.svelte';
 
 	let openaiShow = $state(false);
 
@@ -46,6 +48,24 @@
 		class="w-fit"
 		on:click={() => {
 			localStorage.setItem('openai', openAiKey);
-		}}>Save</Button
-	>
+		}}>Save</Button>
+
+<ThemeToggle/>
 </div>
+
+<style>
+	:root{
+		--bg-color: #FFFFFF;
+		--text-color: #000000;
+	}
+	
+	:global(body) {
+		background: var(--bg-color);
+		color: var(--text-color);
+	}
+	
+	:global(body.dark) {
+		--bg-color: #000000;
+		--text-color: #FFFFFF;
+	}
+</style>
